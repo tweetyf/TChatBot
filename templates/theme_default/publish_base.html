@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>TChatBot - {% block pagetitle %}{% end %}</title>
+    <link rel="icon" type="image/png" href="/static/favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-grid.min.css">
+    
+</head>
+<body>    
+   
+<!-- Home -->
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid" >        
+        <a class="navbar-brand" href=""><img src="/static/logo.png" width="32px"/>TChatBot</a> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarMain" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li class ="nav-item "><a class="nav-link"  href="/" target="_blank"> 首页 </a></li>
+        </ul><!-- /navbar -->
+        </div>
+    </div>
+    </nav>
+
+    <div class="container-fluid" data-ajax="false">
+    <!-- page -->
+    {% block body %}{% end %}
+    </div>
+</div>
+
+<script src="/static/jquery/jquery.slim.min.js"></script>
+<script src="/static/jquery/popper.min.js"></script>
+<script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+{% block bottom %}{% end %}
+
+</body>
+</html>

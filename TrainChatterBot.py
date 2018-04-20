@@ -29,9 +29,9 @@ chatbot = ChatBot(
     output_adapter="chatterbot.output.TerminalAdapter",
     database="./chatterbot.database.db"
 )
-#chatbot.set_trainer(ChatterBotCorpusTrainer)
-#chatbot.train("chatterbot.corpus.english")
-#chatbot.train("chatterbot.corpus.chinese")
+chatbot.set_trainer(ChatterBotCorpusTrainer)
+chatbot.train("chatterbot.corpus.english")
+chatbot.train("chatterbot.corpus.chinese")
 print("Type something to begin...")
 
 # The following loop will execute each time the user enters input

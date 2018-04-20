@@ -1,0 +1,23 @@
+{% extends "publish_base.html" %}
+
+{% block body %}
+<div class="container">
+<div class="form-group  align-items-center mt-3">
+  <form action="?a=cmd" method="post" class="form" role="form"  enctype="multipart/form-data">
+          <label for="uname">say something:</label>
+          <div class="input-group">
+            <input type="text" name="cmd" id="cmd" class="form-control" placeholder="i.e: hello" value="" >
+          {% module xsrf_form_html() %}
+          <div class="input-group-append"><button class="btn btn-outline-success" type="submit">Go</button></div>
+          </div>
+  </form>
+</div>
+
+    <div class="card bg-light mt-3">
+    <div class="card-header"><strong> {{ escape(ptitle) }} <strong></div>
+    <div class="card-body">
+              <pre>{{ escape(tcontent) }} </pre>
+    </div>
+
+</div>
+{% end %}
