@@ -6,3 +6,14 @@ python3
 ```
 pip3 install jieba chatterbot tornado
 ```
+
+## usage:
+
+- If it is your first time run this , you need to train bot.
+```
+python3 TrainChatterBot.py
+```
+- Run the server:
+```
+python3 server 8080
+```

@@ -1,23 +1,64 @@
 {% extends "publish_base.html" %}
 
+{% block pagetitle %}Hello You.{% end %}
+
 {% block body %}
 <div class="container">
 <div class="form-group  align-items-center mt-3">
-  <form action="?a=cmd" method="post" class="form" role="form"  enctype="multipart/form-data">
-          <label for="uname">say something:</label>
+  <form class="form" role="form"  enctype="multipart/form-data" onsubmit="return toWsChat();">
+          <label for="uname"><img class="mr-3" src="/static/header_you.png" width="32px"> say something:</label>
           <div class="input-group">
             <input type="text" name="cmd" id="cmd" class="form-control" placeholder="i.e: hello" value="" >
-          {% module xsrf_form_html() %}
-          <div class="input-group-append"><button class="btn btn-outline-success" type="submit">Go</button></div>
+          <div class="input-group-append"><button class="btn btn-outline-success" type="submit" >Go</button></div>
           </div>
   </form>
 </div>
 
-    <div class="card bg-light mt-3">
-    <div class="card-header"><strong> {{ escape(ptitle) }} <strong></div>
-    <div class="card-body">
-              <pre>{{ escape(tcontent) }} </pre>
-    </div>
-
+<div class="card bg-light mt-3">
+  <div class="card-header" id="botstatus"><strong> {{ escape(ptitle) }} </strong></div>
+  <div class="card-body" id="chatMainWindow">
+    <p>{{ tcontent }} </p>
+  </div>
 </div>
+</div>
+{% end %}
+
+{% block bottom %}
+<script>
+var ws = new WebSocket("{{netConf.get('WSSCHEME')}}://{{netConf.get('SERVER_HOST')}}:{{netConf.get('SERVER_PORT')}}/wschat");
+ws.onopen = function() {
+   //ws.send("Hello, world");
+   document.getElementById('botstatus').innerHTML='<img class="mr-3" src="/static/header.png" height="32px"><span class="badge badge-success">online</span>';
+};
+
+function toWsChat(){
+ var msg = document.getElementById("cmd").value; 
+ ws.send(msg);
+ document.getElementById("cmd").value="";
+ var nowtime = getNowTime();
+ oldhtml  =  document.getElementById('chatMainWindow').innerHTML;
+ document.getElementById('chatMainWindow').innerHTML = '<div class="media mt-3"><img class="mr-3" src="/static/header_you.png" width="32px"><div class="media-body">'+msg+'<p class="mt-0"><small>'+nowtime+'</small></p></div></div>'+ oldhtml;
+ return false;
+}
+
+ws.onmessage = function (evt) {
+   //alert(evt.data);
+   var nowtime = getNowTime();
+   oldhtml  =  document.getElementById('chatMainWindow').innerHTML;
+   document.getElementById('chatMainWindow').innerHTML = '<div class="media mt-3"><img class="mr-3" src="/static/header.png" width="32px"><div class="media-body">'+evt.data+'<p class="mt-0"><small>'+nowtime+'</small></p></div></div>'+ oldhtml;
+};
+
+ws.onclose = function (evt) {
+  document.getElementById('botstatus').innerHTML='<img class="mr-3" src="/static/header.png" height="32px"><span class="badge badge-secondary">offline</span>';
+};
+
+function getNowTime() 
+{ 
+  var today=new Date();
+  var h=today.getHours(); 
+  var m=today.getMinutes(); 
+  var s=today.getSeconds();
+  return h+":"+m+":"+s
+}
+</script>
 {% end %}

@@ -21,6 +21,7 @@ import os,sys
 handlers = [
     ##for web view
     ('/',                action.admin.Index),
+    ('/wschat',                action.admin.ChatWebSocket),
     # Make url ending with or without '/' going to the same class
     ('/(.*)/',                   action.admin.redirect), 
 ]

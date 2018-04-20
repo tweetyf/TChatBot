@@ -6,21 +6,37 @@
 import config,utils
 import time,json,gc
 from action.base import base as BaseAction
+from action.base import wsbase as WSBaseAction
 from tornado import gen
 import tornado.web
+import tornado.websocket
 
 class Index(BaseAction):
     def get(self):
         content="Hello, I am a chat bot."
-        self.render("publish_index.html",tcontent=content,ptitle="TChatBot")
+        self.render("publish_index.html",tcontent=content, netConf=config.netpref, ptitle="TChatBot")
     
     def post(self):
         x={'a':self.get_argument('a',''), 'cmd':self.get_argument('cmd','')}
         chatbot = self.get_chatbot_instance()
         content = chatbot.get_response(x['cmd'])
         print(content, type(content))
-        #content=utils.run(x['cmd'])
-        self.render("publish_index.html",tcontent=str(content),ptitle="TChatBot")
+        self.render("publish_index.html",tcontent=str(content), netConf=config.netpref, ptitle="TChatBot")
+
+class ChatWebSocket(WSBaseAction):
+    def open(self):
+        print("WebSocket opened")
+        chatbot = self.get_chatbot_instance()
+        self.write_message(chatbot.name)
+
+    def on_message(self, message):
+        chatbot = self.get_chatbot_instance()
+        content = chatbot.get_response(message)
+        self.write_message(str(content))
+
+    def on_close(self):
+        print("WebSocket closed")
+
 
 class ErrorPage(BaseAction):
     def get(self):

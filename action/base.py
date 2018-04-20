@@ -4,6 +4,7 @@
 # 2017.12.10: Switched into Tornado
 
 import tornado.web
+import tornado.websocket
 import config,utils
 import json,time,base64,urllib.request,urllib.error,urllib.parse
 import re
@@ -13,7 +14,7 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 
 # Create a new instance of a ChatBot
 Schatbot = ChatBot(
-    "Terminal",
+    "Mixun ChatBot",
     storage_adapter="chatterbot.storage.SQLStorageAdapter",
     logic_adapters=[
         "chatterbot.logic.BestMatch",
@@ -22,9 +23,13 @@ Schatbot = ChatBot(
     ],
     output_adapter="chatterbot.output.OutputAdapter",
     output_format="text",
+    read_only=False,
     database="./chatterbot.database.db"
 )
 
+class wsbase(tornado.websocket.WebSocketHandler):
+    def get_chatbot_instance(self):
+        return Schatbot
 
 class base(tornado.web.RequestHandler):
 

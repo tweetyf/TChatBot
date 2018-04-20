@@ -27,6 +27,7 @@ chatbot = ChatBot(
     ],
     input_adapter="chatterbot.input.TerminalAdapter",
     output_adapter="chatterbot.output.TerminalAdapter",
+    read_only=False,
     database="./chatterbot.database.db"
 )
 chatbot.set_trainer(ChatterBotCorpusTrainer)
