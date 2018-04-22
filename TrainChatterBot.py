@@ -6,17 +6,21 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.trainers import ListTrainer
 
 '''
-chatbot = ChatBot("myBot")
-# 使用英文语料库训练它
-# 开始对话 
-chatbot.get_response("Hello, how are you today?")
-from chatterbot import ChatBot
-from chatterbot.trainers import ChatterBotCorpusTrainer
-deepThought = ChatBot("deepThought")
-deepThought.set_trainer(ChatterBotCorpusTrainer)
-# 使用中文语料库训练它
-deepThought.train("chatterbot.corpus.chinese")  # 语料库
+dataset from https://github.com/fateleak/dgk_lost_conv
 '''
+def trainWithConv(chatbot, convFilename):
+    print('Trainning with:',convFilename)
+    xiaohuangjiC= open(convFilename,'r')
+    txtCorpus=[]
+    for line in xiaohuangjiC:
+        if line.startswith('M '):
+            line = line.replace('M ','').strip()
+            txtCorpus.append(line)
+            #print(line)
+        else: continue
+    chatbot.set_trainer(ListTrainer)
+    chatbot.train(txtCorpus)
+
 # Create a new instance of a ChatBot
 chatbot = ChatBot(
     "Terminal",
@@ -37,16 +41,15 @@ chatbot = ChatBot(
 chatbot.set_trainer(ChatterBotCorpusTrainer)
 chatbot.train("chatterbot.corpus.english")
 chatbot.train("chatterbot.corpus.chinese")
-xiaohuangjiC= open('./static/xiaohuangji50w_nofenci.conv','r')
-txtCorpus=[]
-for line in xiaohuangjiC:
-    if line.startswith('M '):
-        line = line.replace('M ','').strip()
-        txtCorpus.append(line)
-        #print(line)
-    else: continue
-chatbot.set_trainer(ListTrainer)
-chatbot.train(txtCorpus)
+trainWithConv(chatbot, './static/fanzxl.conv')
+trainWithConv(chatbot, './static/fk24.conv')
+trainWithConv(chatbot, './static/haosys.conv')
+trainWithConv(chatbot, './static/juemds.conv')
+trainWithConv(chatbot, './static/laoyj.conv')
+trainWithConv(chatbot, './static/lost.conv')
+trainWithConv(chatbot, './static/prisonb.conv')
+trainWithConv(chatbot, './static/xiaohuangji50w_nofenci.conv')
+## Add more training data here.
 
 print("Type something to begin...")
 
