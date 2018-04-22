@@ -12,8 +12,12 @@ import os
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
+class MyChatBot(ChatBot):
+    def nothing(self):
+        pass
+
 # Create a new instance of a ChatBot
-Schatbot = ChatBot(
+Schatbot = MyChatBot(
     "Mixun ChatBot",
     storage_adapter="chatterbot.storage.SQLStorageAdapter",
     logic_adapters=[
