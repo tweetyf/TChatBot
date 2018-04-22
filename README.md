@@ -6,6 +6,10 @@ python3
 ```
 pip3 install jieba chatterbot tornado
 ```
+mongodb:
+```
+sudo apt install mongodb
+```
 
 ## usage:
 

@@ -4,7 +4,7 @@
 # 2017.12.10: Switched into Tornado
 
 import config,utils
-import time,json,gc
+import time,json,gc,random
 from action.base import base as BaseAction
 from action.base import wsbase as WSBaseAction
 from tornado import gen
@@ -27,12 +27,17 @@ class ChatWebSocket(WSBaseAction):
     def open(self):
         print("WebSocket opened")
         chatbot = self.get_chatbot_instance()
-        self.write_message(chatbot.name)
+        self.write_message('您好，我是'+chatbot.name)
 
     def on_message(self, message):
         chatbot = self.get_chatbot_instance()
+        # make first response.
         content = chatbot.get_response(message)
         self.write_message(str(content))
+        if (random.randint(0,100) <4):
+            # 8% chance to make 3rd response.
+            content = chatbot.get_response(str(content))
+            self.write_message(str(content))
 
     def on_close(self):
         print("WebSocket closed")

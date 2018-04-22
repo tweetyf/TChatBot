@@ -18,17 +18,24 @@ class MyChatBot(ChatBot):
 
 # Create a new instance of a ChatBot
 Schatbot = MyChatBot(
-    "Mixun ChatBot",
-    storage_adapter="chatterbot.storage.SQLStorageAdapter",
+    config.DEFAULT_BOTNAME,
+    #storage_adapter="chatterbot.storage.SQLStorageAdapter",
+    #database="./chatterbot.database.db",
+    storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
+    database='chatterbot-database',
     logic_adapters=[
-        "chatterbot.logic.BestMatch",
+        #"chatterbot.logic.BestMatch",
+        {
+            "import_path": "chatterbot.logic.BestMatch",
+            "statement_comparison_function": "chatterbot.comparisons.levenshtein_distance",
+            "response_selection_method": "chatterbot.response_selection.get_random_response"
+        },
     #    "chatterbot.logic.MathematicalEvaluation",
     #    "chatterbot.logic.TimeLogicAdapter",
     ],
     output_adapter="chatterbot.output.OutputAdapter",
     output_format="text",
     read_only=False,
-    database="./chatterbot.database.db"
 )
 
 class wsbase(tornado.websocket.WebSocketHandler):

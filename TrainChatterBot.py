@@ -3,6 +3,7 @@
 
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
+from chatterbot.trainers import ListTrainer
 
 '''
 chatbot = ChatBot("myBot")
@@ -19,7 +20,10 @@ deepThought.train("chatterbot.corpus.chinese")  # 语料库
 # Create a new instance of a ChatBot
 chatbot = ChatBot(
     "Terminal",
-    storage_adapter="chatterbot.storage.SQLStorageAdapter",
+    #storage_adapter="chatterbot.storage.SQLStorageAdapter",
+    #database="./chatterbot.database.db",
+    storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
+    database='chatterbot-database',
     logic_adapters=[
         "chatterbot.logic.BestMatch",
     #    "chatterbot.logic.MathematicalEvaluation",
@@ -28,11 +32,22 @@ chatbot = ChatBot(
     input_adapter="chatterbot.input.TerminalAdapter",
     output_adapter="chatterbot.output.TerminalAdapter",
     read_only=False,
-    database="./chatterbot.database.db"
+    
 )
 chatbot.set_trainer(ChatterBotCorpusTrainer)
 chatbot.train("chatterbot.corpus.english")
 chatbot.train("chatterbot.corpus.chinese")
+xiaohuangjiC= open('./static/xiaohuangji50w_nofenci.conv','r')
+txtCorpus=[]
+for line in xiaohuangjiC:
+    if line.startswith('M '):
+        line = line.replace('M ','').strip()
+        txtCorpus.append(line)
+        #print(line)
+    else: continue
+chatbot.set_trainer(ListTrainer)
+chatbot.train(txtCorpus)
+
 print("Type something to begin...")
 
 # The following loop will execute each time the user enters input

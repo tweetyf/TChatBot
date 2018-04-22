@@ -15,6 +15,7 @@ netpref['REDIS_PORT']=6379
 netpref['REDIS_DB']=0
 netpref['REDIS_PASSWORD']=None
 
+DEFAULT_BOTNAME="蓝色章鱼哥"
 DEFAULT_HEAD="/static/header.png"
 
 #网站信息设置
