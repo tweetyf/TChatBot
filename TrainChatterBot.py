@@ -10,16 +10,17 @@ dataset from https://github.com/fateleak/dgk_lost_conv
 '''
 def trainWithConv(chatbot, convFilename):
     print('Trainning with:',convFilename)
+    chatbot.set_trainer(ListTrainer)
     xiaohuangjiC= open(convFilename,'r')
     txtCorpus=[]
     for line in xiaohuangjiC:
         if line.startswith('M '):
-            line = line.replace('M ','').strip()
+            line = line.replace('M ','').replace('/','').strip()
             txtCorpus.append(line)
             #print(line)
-        else: continue
-    chatbot.set_trainer(ListTrainer)
-    chatbot.train(txtCorpus)
+        elif line.startswith('E'):
+            chatbot.train(txtCorpus)
+            txtCorpus=[]
 
 # Create a new instance of a ChatBot
 chatbot = ChatBot(
@@ -49,6 +50,7 @@ trainWithConv(chatbot, './static/laoyj.conv')
 trainWithConv(chatbot, './static/lost.conv')
 trainWithConv(chatbot, './static/prisonb.conv')
 trainWithConv(chatbot, './static/xiaohuangji50w_nofenci.conv')
+trainWithConv(chatbot, './static/dgk_shooter_z.conv')
 ## Add more training data here.
 
 print("Type something to begin...")
