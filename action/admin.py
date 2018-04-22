@@ -32,6 +32,7 @@ class ChatWebSocket(WSBaseAction):
     def on_message(self, message):
         chatbot = self.get_chatbot_instance()
         # make first response.
+        message = message[0:100]
         content = chatbot.get_response(message)
         self.write_message(str(content))
         if (random.randint(0,100) <4):
