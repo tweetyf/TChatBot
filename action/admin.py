@@ -27,18 +27,29 @@ class ChatWebSocket(WSBaseAction):
     def open(self):
         print("WebSocket opened")
         chatbot = self.get_chatbot_instance()
-        self.write_message('您好，我是'+chatbot.name)
+        result ={}
+        result['id']= chatbot.name
+        result['m']='您好，我是'+chatbot.name
+        #print(json.dumps(result))
+        self.write_message(json.dumps(result))
 
     def on_message(self, message):
         chatbot = self.get_chatbot_instance()
         # make first response.
-        message = message[0:100]
-        content = chatbot.get_response(message)
-        self.write_message(str(content))
+        result ={}
+        msg = json.loads(message)
+        convID = msg.get('id')
+        convMsg = msg.get('m')
+        convMsg = convMsg[0:100]
+        content = chatbot.get_response(convMsg,convID)
+        result['id']= convID
+        result['m']=str(content)
+        self.write_message(json.dumps(result))
         if (random.randint(0,100) <4):
             # 8% chance to make 3rd response.
-            content = chatbot.get_response(str(content))
-            self.write_message(str(content))
+            content = chatbot.get_response(str(content),convID)
+            result['m']=str(content)
+            self.write_message(json.dumps(result))
 
     def on_close(self):
         print("WebSocket closed")

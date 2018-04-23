@@ -8,6 +8,7 @@
   <form class="form" role="form"  enctype="multipart/form-data" onsubmit="return toWsChat();">
           <label for="uname"><img class="mr-3" src="/static/header_you.png" width="32px"> say something:</label>
           <div class="input-group">
+            <input type="text" name="uid" id="uid" class="form-control" placeholder="YourId" value="browserUser" >
             <input type="text" name="cmd" id="cmd" class="form-control" placeholder="i.e: hello" value="" >
           <div class="input-group-append"><button class="btn btn-outline-success" type="submit" >Go</button></div>
           </div>
@@ -33,7 +34,10 @@ ws.onopen = function() {
 
 function toWsChat(){
  var msg = document.getElementById("cmd").value; 
- ws.send(msg);
+ var id = document.getElementById('uid').value;
+ //alert(id);
+ var jmsg = {'id':id, 'm':msg};
+ ws.send(JSON.stringify(jmsg));
  document.getElementById("cmd").value="";
  var nowtime = getNowTime();
  oldhtml  =  document.getElementById('chatMainWindow').innerHTML;
@@ -42,10 +46,12 @@ function toWsChat(){
 }
 
 ws.onmessage = function (evt) {
-   //alert(evt.data);
-   var nowtime = getNowTime();
-   oldhtml  =  document.getElementById('chatMainWindow').innerHTML;
-   document.getElementById('chatMainWindow').innerHTML = '<div class="media mt-3"><img class="mr-3" src="/static/header.png" width="32px"><div class="media-body">'+evt.data+'<p class="mt-0"><small>'+nowtime+'</small></p></div></div>'+ oldhtml;
+  var jmsg = eval('(' +evt.data+')');
+  var id = jmsg.id;
+  var msg = jmsg.m;
+  var nowtime = getNowTime();
+  oldhtml  =  document.getElementById('chatMainWindow').innerHTML;
+  document.getElementById('chatMainWindow').innerHTML = '<div class="media mt-3"><img class="mr-3" src="/static/header.png" width="32px"><div class="media-body">'+msg+'<p class="mt-0"><small>'+nowtime+'</small></p></div></div>'+ oldhtml;
 };
 
 ws.onclose = function (evt) {
