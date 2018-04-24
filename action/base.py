@@ -21,8 +21,8 @@ Schatbot = MyChatBot(
     config.DEFAULT_BOTNAME,
     #storage_adapter="chatterbot.storage.SQLStorageAdapter",
     #database="./chatterbot.database.db",
-    storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
-    database='chatterbot-database',
+    storage_adapter='model.MongoDatabaseAdapter',
+    database='tchatterbot-db',
     logic_adapters=[
         #"chatterbot.logic.BestMatch",
         {

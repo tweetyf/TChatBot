@@ -13,6 +13,7 @@ def trainWithConv(chatbot, convFilename):
     chatbot.set_trainer(ListTrainer)
     xiaohuangjiC= open(convFilename,'r')
     txtCorpus=[]
+    i =0
     for line in xiaohuangjiC:
         if line.startswith('M '):
             line = line.replace('M ','').replace('/','').strip()
@@ -21,14 +22,16 @@ def trainWithConv(chatbot, convFilename):
         elif line.startswith('E'):
             chatbot.train(txtCorpus)
             txtCorpus=[]
+            i=i+1
+            print(convFilename + " ", i)
 
 # Create a new instance of a ChatBot
 chatbot = ChatBot(
     "Terminal",
     #storage_adapter="chatterbot.storage.SQLStorageAdapter",
     #database="./chatterbot.database.db",
-    storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
-    database='chatterbot-database',
+    storage_adapter='model.MongoDatabaseAdapter',
+    database='tchatterbot-db',
     logic_adapters=[
         "chatterbot.logic.BestMatch",
     #    "chatterbot.logic.MathematicalEvaluation",
@@ -42,16 +45,26 @@ chatbot = ChatBot(
 chatbot.set_trainer(ChatterBotCorpusTrainer)
 chatbot.train("chatterbot.corpus.english")
 chatbot.train("chatterbot.corpus.chinese")
-trainWithConv(chatbot, './static/fanzxl.conv')
-trainWithConv(chatbot, './static/fk24.conv')
-trainWithConv(chatbot, './static/haosys.conv')
-trainWithConv(chatbot, './static/juemds.conv')
-trainWithConv(chatbot, './static/laoyj.conv')
-trainWithConv(chatbot, './static/lost.conv')
-trainWithConv(chatbot, './static/prisonb.conv')
-trainWithConv(chatbot, './static/xiaohuangji50w_nofenci.conv')
-trainWithConv(chatbot, './static/dgk_shooter_z.conv')
+#trainWithConv(chatbot, './static/fanzxl.conv')
+#trainWithConv(chatbot, './static/fk24.conv')
+#trainWithConv(chatbot, './static/haosys.conv')
+#trainWithConv(chatbot, './static/juemds.conv')
+#trainWithConv(chatbot, './static/laoyj.conv')
+#trainWithConv(chatbot, './static/lost.conv')
+#trainWithConv(chatbot, './static/prisonb.conv')
+#trainWithConv(chatbot, './static/xiaohuangji50w_nofenci.conv')
+#trainWithConv(chatbot, './static/dgk_shooter_z.conv')
 ## Add more training data here.
+trainWithConv(chatbot, './static/xaa')
+trainWithConv(chatbot, './static/xab')
+trainWithConv(chatbot, './static/xac')
+trainWithConv(chatbot, './static/xad')
+trainWithConv(chatbot, './static/xae')
+trainWithConv(chatbot, './static/xaf')
+trainWithConv(chatbot, './static/xag')
+trainWithConv(chatbot, './static/xah')
+trainWithConv(chatbot, './static/xai')
+trainWithConv(chatbot, './static/xaj')
 
 print("Type something to begin...")
 
