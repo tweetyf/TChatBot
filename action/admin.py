@@ -4,12 +4,14 @@
 # 2017.12.10: Switched into Tornado
 
 import config,utils
-import time,json,gc,random
+import time,json,gc,random,re
 from action.base import base as BaseAction
 from action.base import wsbase as WSBaseAction
 from tornado import gen
 import tornado.web
 import tornado.websocket
+
+rAtSm = re.compile("\@-?[1-9]\d* ",re.DOTALL)
 
 class Index(BaseAction):
     def get(self):
@@ -40,9 +42,16 @@ class ChatWebSocket(WSBaseAction):
         msg = json.loads(message)
         convID = msg.get('id')
         convMsg = msg.get('m')
+        # process the message
         convMsg = convMsg[0:100]
+        aaa = rAtSm.findall(convMsg)
+        for a in aaa:
+            convMsg = convMsg.replace(a,'')
+        # message process end.
+        # make a unique Conversation ID, aproxmate in 100s.
         unicConvID = convID + ':' + str(time.time())[0:8]
         print('Session iD:' ,unicConvID)
+        # get response from server
         content = chatbot.get_response(convMsg,unicConvID)
         result['id']= convID
         result['m']=str(content)
