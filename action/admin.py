@@ -41,13 +41,15 @@ class ChatWebSocket(WSBaseAction):
         convID = msg.get('id')
         convMsg = msg.get('m')
         convMsg = convMsg[0:100]
-        content = chatbot.get_response(convMsg,convID)
+        unicConvID = convID + ':' + str(time.time())[0:8]
+        print('Session iD:' ,unicConvID)
+        content = chatbot.get_response(convMsg,unicConvID)
         result['id']= convID
         result['m']=str(content)
         self.write_message(json.dumps(result))
         if (random.randint(0,100) <4):
             # 8% chance to make 3rd response.
-            content = chatbot.get_response(str(content),convID)
+            content = chatbot.get_response(str(content),unicConvID)
             result['m']=str(content)
             self.write_message(json.dumps(result))
 
