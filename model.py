@@ -111,6 +111,7 @@ class MongoDatabaseAdapter(StorageAdapter):
         self.statements.create_index('text', unique=True)
 
         self.base_query = Query()
+        self.statement_objects = []
 
     def get_statement_model(self):
         """
@@ -365,6 +366,7 @@ class MongoDatabaseAdapter(StorageAdapter):
         in_response_to field. Otherwise, the logic adapter may find a closest
         matching statement that does not have a known response.
         """
+        '''
         response_query = self.statements.aggregate([{'$group': {'_id': '$in_response_to.text'}}])
 
         responses = []
@@ -383,9 +385,21 @@ class MongoDatabaseAdapter(StorageAdapter):
         _statement_query.update(self.base_query.value())
         statement_query = self.statements.find(_statement_query)
         statement_objects = []
-        for statement in list(statement_query):
+        for statement in statement_query:
             statement_objects.append(self.mongo_to_object(statement))
         return statement_objects
+        '''
+        #TODO: cached statement_objects needs to be renewed.
+        if(len(self.statement_objects) > 0):
+            print('statement_objects exists:', len(self.statement_objects))
+            return self.statement_objects
+        statement_query = self.statements.find()
+        for statement in statement_query:
+            if (len(statement['in_response_to']) > 0):
+                r1 = self.mongo_to_object(statement)
+                self.statement_objects.append(r1)
+        print('statement_objects:', len(self.statement_objects))
+        return self.statement_objects
 
     def drop(self):
         """

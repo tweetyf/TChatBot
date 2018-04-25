@@ -26,7 +26,7 @@ Schatbot = MyChatBot(
     logic_adapters=[
         #"chatterbot.logic.BestMatch",
         {
-            "import_path": "chatterbot.logic.BestMatch",
+            "import_path": "logic.BestMatch",
             "statement_comparison_function": "chatterbot.comparisons.levenshtein_distance",
             "response_selection_method": "chatterbot.response_selection.get_random_response"
         },

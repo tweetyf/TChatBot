@@ -33,7 +33,7 @@ chatbot = ChatBot(
     storage_adapter='model.MongoDatabaseAdapter',
     database='tchatterbot-db',
     logic_adapters=[
-        "chatterbot.logic.BestMatch",
+        "logic.BestMatch",
     #    "chatterbot.logic.MathematicalEvaluation",
     #    "chatterbot.logic.TimeLogicAdapter",
     ],
