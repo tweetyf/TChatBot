@@ -26,7 +26,16 @@
 
 {% block bottom %}
 <script>
-var ws = new WebSocket("{{netConf.get('WSSCHEME')}}://{{netConf.get('SERVER_HOST')}}:{{netConf.get('SERVER_PORT')}}/wschat");
+var loc = window.location, new_uri;
+if (loc.protocol === "https:") {
+    new_uri = "wss:";
+} else {
+    new_uri = "ws:";
+}
+new_uri += "//" + loc.host;
+new_uri += loc.pathname + "wschat";
+
+var ws = new WebSocket(new_uri);
 ws.onopen = function() {
    //ws.send("Hello, world");
    document.getElementById('botstatus').innerHTML='<img class="mr-3" src="/static/header.png" height="32px"><span class="badge badge-success">online</span>';
