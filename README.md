@@ -54,3 +54,37 @@ Then get response from server:
  'm':msg   // server's message.
  }
 ```
+
+## Deployment
+You might want deploy the service behind nginx proxy server. To do this, you need set proxy headers for websocket.
+```
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server ipv6only=on;
+  root /path/to/your/server;
+
+	server_name localhost;
+	charset utf-8;
+	access_log  /var/log/nginx/nginx.access.log;
+	location / {
+	    proxy_pass http://127.0.0.1:8080/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_read_timeout 1d;
+	}
+    location /static {
+        root /path/to/your/server;
+        autoindex on;
+        autoindex_exact_size off;
+        autoindex_localtime on;
+        charset utf-8;
+        if (-f $request_filename) {
+          rewrite ^/static/(.*)$  /static/$1 break;
+        }
+    }
+}
+
+```
