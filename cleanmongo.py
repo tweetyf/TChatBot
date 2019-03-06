@@ -18,6 +18,6 @@ conversations = database['conversations']
 cursor = statements.find()
 
 for cr in cursor:
-	if (len(cr['in_response_to']) > 50):
-		print(type(cr), len(cr), len(cr['in_response_to']), cr['text'], str(len(str(cr))/1024)+'kb' )
-	continue;
+    if (len(cr['in_response_to']) > 50):
+        print(type(cr), len(cr), len(cr['in_response_to']), cr['text'], str(len(str(cr))/1024)+'kb' )
+    continue;
