@@ -20,7 +20,29 @@ print(tf.__version__)
 #test, if size too large, the shrink it.
 IMAGE_SIZE=(128,128)
 IMAGE_SHAPE=(128,128,3)
-LABELS={'English_setter': 117, 'Irish_wolfhound': 62, 'basset': 57, 'Appenzeller': 112, 'cairn': 114, 'clumber': 71, 'silky_terrier': 108, 'Afghan_hound': 54, 'miniature_poodle': 97, 'Blenheim_spaniel': 10, 'bull_mastiff': 119, 'groenendael': 78, 'flat-coated_retriever': 46, 'Border_collie': 118, 'Staffordshire_bullterrier': 29, 'Irish_setter': 3, 'Airedale': 61, 'Pomeranian': 93, 'Sealyham_terrier': 38, 'Yorkshire_terrier': 21, 'collie': 116, 'Gordon_setter': 84, 'miniature_schnauzer': 60, 'Welsh_springer_spaniel': 51, 'giant_schnauzer': 36, 'Kerry_blue_terrier': 42, 'Weimaraner': 14, 'Labrador_retriever': 73, 'Doberman': 59, 'cocker_spaniel': 31, 'Bernese_mountain_dog': 24, 'boxer': 26, 'Newfoundland': 105, 'beagle': 7, 'toy_terrier': 96, 'Dandie_Dinmont': 103, 'Brittany_spaniel': 22, 'EntleBucher': 107, 'borzoi': 75, 'dingo': 43, 'Japanese_spaniel': 102, 'French_bulldog': 86, 'Siberian_husky': 45, 'Border_terrier': 87, 'Greater_Swiss_Mountain_dog': 23, 'otterhound': 41, 'black-and-tan_coonhound': 63, 'whippet': 15, 'Mexican_hairless': 55, 'pug': 66, 'briard': 99, 'kuvasz': 40, 'Bedlington_terrier': 44, 'toy_poodle': 76, 'Norwegian_elkhound': 37, 'Lhasa': 91, 'komondor': 68, 'curly-coated_retriever': 13, 'Samoyed': 18, 'miniature_pinscher': 2, 'bluetick': 83, 'malinois': 52, 'Lakeland_terrier': 95, 'Saluki': 5, 'wire-haired_fox_terrier': 74, 'English_foxhound': 11, 'Ibizan_hound': 85, 'Leonberg': 104, 'Saint_Bernard': 34, 'keeshond': 27, 'malamute': 69, 'Maltese_dog': 106, 'Tibetan_terrier': 32, 'Irish_terrier': 47, 'standard_schnauzer': 20, 'Brabancon_griffon': 88, 'English_springer': 81, 'Walker_hound': 28, 'Irish_water_spaniel': 49, 'Old_English_sheepdog': 115, 'Australian_terrier': 1, 'German_short-haired_pointer': 56, 'Scotch_terrier': 120, 'Shetland_sheepdog': 70, 'redbone': 16, 'vizsla': 67, 'golden_retriever': 25, 'Eskimo_dog': 94, 'Rhodesian_ridgeback': 58, 'West_Highland_white_terrier': 8, 'Chesapeake_Bay_retriever': 72, 'Sussex_spaniel': 90, 'Pekinese': 39, 'German_shepherd': 65, 'affenpinscher': 9, 'Bouvier_des_Flandres': 101, 'Tibetan_mastiff': 100, 'papillon': 4, 'Scottish_deerhound': 17, 'African_hunting_dog': 6, 'Norwich_terrier': 30, 'Boston_bull': 77, 'Rottweiler': 113, 'Shih-Tzu': 53, 'standard_poodle': 110, 'American_Staffordshire_terrier': 33, 'chow': 79, 'Cardigan': 19, 'Italian_greyhound': 80, 'dhole': 48, 'schipperke': 82, 'Great_Dane': 111, 'kelpie': 50, 'basenji': 92, 'Pembroke': 64, 'Norfolk_terrier': 12, 'bloodhound': 109, 'soft-coated_wheaten_terrier': 89, 'Chihuahua': 98, 'Great_Pyrenees': 35}
+LABELS={'English_setter': 117, 'Irish_wolfhound': 62, 'basset': 57, 'Appenzeller': 112, 
+'cairn': 114, 'clumber': 71, 'silky_terrier': 108, 'Afghan_hound': 54, 'miniature_poodle': 97,
+ 'Blenheim_spaniel': 10, 'bull_mastiff': 119, 'groenendael': 78, 'flat-coated_retriever': 46, 
+ 'Border_collie': 118, 'Staffordshire_bullterrier': 29, 'Irish_setter': 3, 'Airedale': 61, 'Pomeranian': 93, 
+ 'Sealyham_terrier': 38, 'Yorkshire_terrier': 21, 'collie': 116, 'Gordon_setter': 84, 'miniature_schnauzer': 60, 
+ 'Welsh_springer_spaniel': 51, 'giant_schnauzer': 36, 'Kerry_blue_terrier': 42, 'Weimaraner': 14, 'Labrador_retriever': 73, 
+ 'Doberman': 59, 'cocker_spaniel': 31, 'Bernese_mountain_dog': 24, 'boxer': 26, 'Newfoundland': 105, 
+ 'beagle': 7, 'toy_terrier': 96, 'Dandie_Dinmont': 103, 'Brittany_spaniel': 22, 'EntleBucher': 107, 
+ 'borzoi': 75, 'dingo': 43, 'Japanese_spaniel': 102, 'French_bulldog': 86, 'Siberian_husky': 45, 'Border_terrier': 87, 
+ 'Greater_Swiss_Mountain_dog': 23, 'otterhound': 41, 'black-and-tan_coonhound': 63, 'whippet': 15, 'Mexican_hairless': 55, 
+ 'pug': 66, 'briard': 99, 'kuvasz': 40, 'Bedlington_terrier': 44, 'toy_poodle': 76, 'Norwegian_elkhound': 37, 'Lhasa': 91, 
+ 'komondor': 68, 'curly-coated_retriever': 13, 'Samoyed': 18, 'miniature_pinscher': 2, 'bluetick': 83, 'malinois': 52, 
+ 'Lakeland_terrier': 95, 'Saluki': 5, 'wire-haired_fox_terrier': 74, 'English_foxhound': 11, 'Ibizan_hound': 85, 
+ 'Leonberg': 104, 'Saint_Bernard': 34, 'keeshond': 27, 'malamute': 69, 'Maltese_dog': 106, 'Tibetan_terrier': 32, 
+ 'Irish_terrier': 47, 'standard_schnauzer': 20, 'Brabancon_griffon': 88, 'English_springer': 81, 'Walker_hound': 28,
+  'Irish_water_spaniel': 49, 'Old_English_sheepdog': 115, 'Australian_terrier': 1, 'German_short-haired_pointer': 56, 
+  'Scotch_terrier': 0, 'Shetland_sheepdog': 70, 'redbone': 16, 'vizsla': 67, 'golden_retriever': 25, 'Eskimo_dog': 94, 
+  'Rhodesian_ridgeback': 58, 'West_Highland_white_terrier': 8, 'Chesapeake_Bay_retriever': 72, 'Sussex_spaniel': 90, 
+  'Pekinese': 39, 'German_shepherd': 65, 'affenpinscher': 9, 'Bouvier_des_Flandres': 101, 'Tibetan_mastiff': 100, 
+  'papillon': 4, 'Scottish_deerhound': 17, 'African_hunting_dog': 6, 'Norwich_terrier': 30, 'Boston_bull': 77, 'Rottweiler': 113, 
+  'Shih-Tzu': 53, 'standard_poodle': 110, 'American_Staffordshire_terrier': 33, 'chow': 79, 'Cardigan': 19, 'Italian_greyhound': 80, 
+  'dhole': 48, 'schipperke': 82, 'Great_Dane': 111, 'kelpie': 50, 'basenji': 92, 'Pembroke': 64, 'Norfolk_terrier': 12, 'bloodhound': 109, 
+  'soft-coated_wheaten_terrier': 89, 'Chihuahua': 98, 'Great_Pyrenees': 35}
 LABELS_R = {}
 for itm in LABELS.keys():
     LABELS_R[LABELS[itm]] = itm
@@ -40,14 +62,14 @@ def cleanWorkspace():
 
 #============================data preparation.==========================
 def testReadSamples():
-    breed_list = os.listdir('./input/Annotation/')
+    breed_list = os.listdir('./dogdataset/input/Annotation/')
     figplot = plt.figure(figsize=(10, 10))
     for i in range(9):
         plt.subplot(331 + i) # showing 9 random images
         breed = np.random.choice(breed_list) # random breed
-        dog = np.random.choice(os.listdir('./input/Annotation/' + breed)) # random image 
-        img = Image.open('./input/Images/' + breed + '/' + dog + '.jpg') 
-        tree = ET.parse('./input/Annotation/' + breed + '/' + dog) # init parser for file given
+        dog = np.random.choice(os.listdir('./dogdataset/input/Annotation/' + breed)) # random image 
+        img = Image.open('./dogdataset/input/Images/' + breed + '/' + dog + '.jpg') 
+        tree = ET.parse('./dogdataset/input/Annotation/' + breed + '/' + dog) # init parser for file given
         root = tree.getroot() # idk what's it but it's from documentation
         objects = root.findall('object') # finding all dogs. An array
         plt.imshow(img) # displays photo
@@ -63,27 +85,27 @@ def testReadSamples():
 
 def loadAnnotation():
     # 9/10 for training, and 1/10 for testing
-    divider=10
+    divider=20
     annoObj=[]
     testObj=[]
-    breed_list = os.listdir('./input/Annotation/')
+    breed_list = os.listdir('./dogdataset/input/Annotation/')
     for breed in breed_list:
-        dogs = os.listdir('./input/Annotation/' + breed) # image infos. 
+        dogs = os.listdir('./dogdataset/input/Annotation/' + breed) # image infos. 
         for dog in dogs:
-            imgdir = './input/Images/' + breed + '/' + dog + '.jpg'
-            infotree = ET.parse('./input/Annotation/' + breed + '/' + dog) # init parser for file given
+            imgdir = './dogdataset/input/Images/' + breed + '/' + dog + '.jpg'
+            infotree = ET.parse('./dogdataset/input/Annotation/' + breed + '/' + dog) # init parser for file given
             nodeInfo={"breed":breed, "dog":dog, "imgdir":imgdir, "infotree":infotree}
             _magic = np.random.choice(range(divider))
             if _magic==0: testObj.append(nodeInfo)
             else: annoObj.append(nodeInfo)
-    #np.random.shuffle(annoObj)
-    #np.random.shuffle(testObj)
+    np.random.shuffle(annoObj)
+    np.random.shuffle(testObj)
     return annoObj,testObj
 
 def loadRawData():
     # if the data not been loaded. then load, and save as python objects.
-    anfileTrain ="./output/annoObj.train.obj"
-    anfileTest ="./output/annoObj.test.obj"
+    anfileTrain ="./dogdataset/output/annoObj.train.obj"
+    anfileTest ="./dogdataset/output/annoObj.test.obj"
     annoObjTrain = utils.loadObjsIfExist(anfileTrain)
     annoObjTest = utils.loadObjsIfExist(anfileTest)
     if not annoObjTrain:
@@ -123,7 +145,7 @@ def preProcessImages(tag, annoObj):
     #if the data has not been pre-processed, the process the data.
     #1. generate the label sets.
     #2. save configure info.
-    confFile ="./output/"+tag+"config.obj"
+    confFile ="./dogdataset/output/"+tag+"config.obj"
     confs= utils.loadObjsIfExist(confFile)
     if not confs:
         confs = {}
@@ -147,8 +169,8 @@ def preProcessImages(tag, annoObj):
                 labels[bndname]=labelcnt
             objcnt+=1
             objbatch.append((bndname, imgdir, o))
-            if (objcnt%1000==0 or objcnt == len(annoObj)):
-                batchfile="./output/objbatch_"+tag+str(bacthcnt)
+            if (objcnt%4096==0 or objcnt == len(annoObj)):
+                batchfile="./dogdataset/output/objbatch_"+tag+str(bacthcnt)
                 batchs.append(batchfile)
                 utils.saveObj(objbatch, batchfile)
                 print(objcnt, bacthcnt, len(objbatch))
@@ -164,7 +186,7 @@ def preProcessImages(tag, annoObj):
     utils.saveObj(confs, confFile)
     pass
 
-def loadImagesBatch(batchfile, confs):
+def loadImagesBatch(batchfile):
     #1.load images as numpy's ndarray
     objbatch =utils.loadObjsIfExist(batchfile)
     imgarray = []
@@ -181,7 +203,7 @@ def loadImagesBatch(batchfile, confs):
     return imgarray,labels
 
 def loadConf(tag):
-    confFile ="./output/"+tag+"config.obj"
+    confFile ="./dogdataset/output/"+tag+"config.obj"
     confs= utils.loadObjsIfExist(confFile)
     return confs
 
@@ -193,39 +215,40 @@ def buildModel():
     #keras.layers.Flatten(input_shape=IMAGE_SHAPE),
     keras.layers.Conv2D(32, kernel_size=(3, 3), activation=tf.keras.activations.relu, input_shape=IMAGE_SHAPE),
     keras.layers.MaxPooling2D(pool_size=(2, 2)),
-    keras.layers.Dropout(0.25), 
-    keras.layers.Conv2D(32, kernel_size=(3, 3), activation=tf.keras.activations.relu, input_shape=IMAGE_SHAPE),
-    keras.layers.MaxPooling2D(pool_size=(2, 2)),
+    keras.layers.Dropout(0.02), 
+    keras.layers.Conv2D(32, kernel_size=(3, 3), activation=tf.keras.activations.relu),
+    keras.layers.AveragePooling2D(pool_size=(2, 2)),
+    keras.layers.Dropout(0.02),
+    keras.layers.Conv2D(32, kernel_size=(3, 3), activation=tf.keras.activations.relu),
+    keras.layers.AveragePooling2D(pool_size=(2, 2)),
+    keras.layers.Dropout(0.02),
+    keras.layers.Flatten(),
+    keras.layers.Dense(1024, activation=tf.keras.activations.relu,kernel_regularizer=keras.regularizers.l2(0.001)),
     keras.layers.Dropout(0.25),
-    keras.layers.Conv2D(32, kernel_size=(3, 3), activation=tf.keras.activations.relu, input_shape=IMAGE_SHAPE),
-    keras.layers.MaxPooling2D(pool_size=(2, 2)),
-    keras.layers.Dropout(0.25),
-    keras.layers.Flatten(),   
-    #keras.layers.Dense(256, activation=tf.keras.activations.relu,kernel_regularizer=keras.regularizers.l2(0.001)),
-    #keras.layers.Dropout(0.5),
-    keras.layers.Dense(256, activation=tf.keras.activations.relu,kernel_regularizer=keras.regularizers.l2(0.001)),
-    keras.layers.Dropout(0.25),
+    keras.layers.Dense(1024, activation=tf.keras.activations.relu,kernel_regularizer=keras.regularizers.l2(0.001)),
+    keras.layers.Dropout(0.1),
     keras.layers.Dense(len(LABELS), activation=tf.keras.activations.softmax)
     ])
-    tfmodel.compile(optimizer=tf.keras.optimizers.Adadelta(lr=0.01),
+    tfmodel.compile(optimizer=tf.keras.optimizers.Adadelta(lr=0.1),
                 loss=tf.keras.losses.sparse_categorical_crossentropy,
                 metrics=['accuracy'])
     return tfmodel
 
 def loadWeights(tfmodel):
-    checkpoint_path="./output/chk/cp-{epoch:04d}.ckpt"
-    if os.path.exists("./output/chk/checkpoint"):
-        tfmodel.load_weights(checkpoint_path.format(epoch = 0))
-        print("tfmodel loaded from: ",checkpoint_path)
+    checkpoint_path="./dogdataset/output/chk/cp-{epoch:04d}.ckpt"
+    if os.path.exists("./dogdataset/output/chk/checkpoint"):
+        latest = tf.train.latest_checkpoint("./dogdataset/output/chk/")
+        #tfmodel.load_weights(checkpoint_path.format(epoch = 0))
+        tfmodel.load_weights(latest)
+        print("tfmodel loaded from: ",latest)
     return tfmodel
 
 def trainModel(tfmodel, train_images, train_labels, epochs=50):
-    checkpoint_path="./output/chk/cp-{epoch:04d}.ckpt"
+    checkpoint_path="./dogdataset/output/chk/cp-{epoch:04d}.ckpt"
     cp_callback = tf.keras.callbacks.ModelCheckpoint(checkpoint_path, 
                                                  save_weights_only=True,
                                                  verbose=1,
                                                  period=10)
-    tfmodel.save_weights(checkpoint_path.format(epoch=0))
     result = tfmodel.fit(train_images, train_labels,
           epochs = epochs, callbacks = [cp_callback],
           #validation_data = (test_images,test_labels),
@@ -237,19 +260,29 @@ def evaluteAccuracy(tfmodel, test_images, test_labels):
     loss, acc = tfmodel.evaluate(test_images, test_labels, verbose=1)
     return loss, acc
     
-def makePrediction(tfmodel, imgpath):
-    #1. Read data. 3. Make prediction.
-    img = Image.open(imgpath)
-    #2. resize into fixed size
-    imgobj= img.resize(IMAGE_SIZE)
-    #3. normalnize the data between 0,1
-    imgobj = np.array(imgobj)/ 255.0
+def makePrediction(tfmodel, imgdir):
     test_images =[]
-    test_images.append(imgobj)
+    figplot = plt.figure(figsize=(10, 10))
+    imgs = os.listdir(imgdir)
+    for imgpath in imgs:
+        #1. Read data. 3. Make prediction.
+        img = Image.open(imgdir+ imgpath)
+        #2. resize into fixed size
+        imgobj= img.resize(IMAGE_SIZE)
+        #3. normalnize the data between 0,1
+        imgobj = np.array(imgobj)/ 255.0
+        test_images.append(imgobj)
     test_images = np.array(test_images)
     predictions = tfmodel.predict(test_images,verbose=1)
-    mostlikely = np.argmax(predictions[0])
-    print("Picture ", imgpath, " most likely is ", mostlikely) #LABELS_R[mostlikely])
+    for i in range(len(predictions)):
+        img = test_images[i]
+        pre = predictions[i]
+        mostlikely = np.argmax(pre)
+        txt = LABELS_R[mostlikely]
+        plt.subplot(331 + i) # showing 9 random images
+        plt.imshow(img) # displays photo
+        plt.text(0, 0, txt, bbox={'ec': None}) # printing breed
+    figplot.savefig("./dogdataset/output/001.png",format='png')
     pass
 
 #============================Main logic============================
@@ -268,19 +301,35 @@ def training():
     history =[]
     nBatch =0
     for batchfile in trainBatchs:
-        imgarray,label = loadImagesBatch(batchfile, trainconf)
+        imgarray,label = loadImagesBatch(batchfile)
         print(imgarray.shape, label.shape)
         h1,tfmodel = trainModel(tfmodel,imgarray,label,epochs=20)
         #4. evaluate the model with random test batch
         testbatch = np.random.choice(testBatchs)
-        test_images,test_labels = loadImagesBatch(testbatch, trainconf)
+        test_images,test_labels = loadImagesBatch(testbatch)
         print(test_images.shape, test_labels.shape)
         loss, acc = evaluteAccuracy(tfmodel, test_images,test_labels)
         #5. record the training history for further analysis.
         history.append((h1, loss, acc))
         nBatch+=1
         print(nBatch, "loop of training finished, loss and acc is:",loss, acc)
-        tfmodel.summary()
+
+def evaluateResult():
+     #1. load model
+    tfmodel = buildModel()
+    tfmodel = loadWeights(tfmodel)
+    tfmodel.summary()
+    #2. load config
+    testconf = loadConf("test")
+    testBatchs = testconf["batchs"]
+    history =[]
+    nBatch =0
+    #4. evaluate the model with random test batch
+    testbatch = np.random.choice(testBatchs)
+    test_images,test_labels = loadImagesBatch(testbatch)
+    print(test_images.shape, test_labels.shape)
+    loss, acc = evaluteAccuracy(tfmodel, test_images,test_labels)
+    print("loss and acc is:",loss, acc)
 
 def predict(imgpath):
     tfmodel = buildModel()
@@ -311,7 +360,8 @@ def main():
     elif (argc>=3 and sys.argv[1]== '-e'):
         predict(sys.argv[2])
     elif (argc>=2 and sys.argv[1]== '--test'):
-        testReadSamples()
+        evaluateResult()
+        #testReadSamples()
     elif (argc>=2 and sys.argv[1]== '--clean'):
         cleanWorkspace()
     else:
